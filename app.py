@@ -1,13 +1,12 @@
-import os
-import sys
+from flask import Flask
+
+app = Flask(__name__)
 
 
-sys.path.insert(0, os.path.dirname(__file__))
+@app.route('/')
+def hello_world():  # put application's code here
+    return 'Hello World!'
 
 
-def app(environ, start_response):
-    start_response('200 OK', [('Content-Type', 'text/plain')])
-    message = 'It works!\n'
-    version = 'Python v' + sys.version.split()[0] + '\n'
-    response = '\n'.join([message, version])
-    return [response.encode()]
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
